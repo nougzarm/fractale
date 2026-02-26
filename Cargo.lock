@@ -420,6 +420,7 @@ dependencies = [
  "clap",
  "image",
  "num-complex",
+ "rayon",
 ]
 
 [[package]]
