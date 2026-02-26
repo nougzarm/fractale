@@ -50,6 +50,7 @@ Try these coordinates to find the most beautiful spots in the fractal (remember 
 | --- | --- |
 | **Galactic Snowflake (Julia)** | `cargo run --release -- -t julia --julia-x 0.0 --julia-y 0.8 -z 1.2` |
 | **Golden Dragon (Julia)** | `cargo run --release -- -t julia --julia-x 0.285 --julia-y 0.013 -z 1.2` |
+| **Mandelbrot example** | `cargo run --release -- -x=-0.7400101 -y 0.211003 -z 8000000 -i 1000` |
 
 ---
 
