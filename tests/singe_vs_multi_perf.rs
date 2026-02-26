@@ -7,7 +7,7 @@ use std::time::Instant;
 fn run_single_bench(args: &Args) -> u128 {
     let start = Instant::now();
 
-    let _img = single_core_generate::<Mandelbrot>(Mandelbrot::default(), args);
+    let _img = single_core_generate::<Mandelbrot>(Mandelbrot, args);
 
     start.elapsed().as_millis()
 }
@@ -15,7 +15,7 @@ fn run_single_bench(args: &Args) -> u128 {
 fn run_multi_bench(args: &Args) -> u128 {
     let start = Instant::now();
 
-    let _img = multi_core_generate::<Mandelbrot>(Mandelbrot::default(), args);
+    let _img = multi_core_generate::<Mandelbrot>(Mandelbrot, args);
 
     start.elapsed().as_millis()
 }
@@ -30,6 +30,8 @@ fn compare_performances() {
         zoom: 1.0,
         max_iter: 2000,
         fractal_type: FractalType::Mandelbrot,
+        julia_x: -0.4,
+        julia_y: 0.6,
         output: String::from("test_output"),
     };
 

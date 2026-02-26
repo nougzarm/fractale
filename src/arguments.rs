@@ -37,6 +37,12 @@ pub struct Args {
     #[arg(short = 't', long, value_enum, default_value_t = FractalType::Mandelbrot)]
     pub fractal_type: FractalType,
 
+    #[arg(long, default_value_t = -0.4)]
+    pub julia_x: f64,
+
+    #[arg(long, default_value_t = 0.6)]
+    pub julia_y: f64,
+
     /// Name of output file
     #[arg(short = 'o', long, default_value_t = String::from("output.png"))]
     pub output: String,
