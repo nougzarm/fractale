@@ -11,6 +11,8 @@ A fast, multi-threaded Mandelbrot set generator written in **Rust**. This CLI to
 * **🧵 Multi-threaded:** Uses the `Rayon` library to distribute pixel calculations across all available CPU cores.
 * **🔍 Deep Zoom:** Explore the infinite complexity of the Mandelbrot set with adjustable coordinates and zoom levels.
 * **🛠️ CLI Interface:** Powered by `Clap` for a clean and intuitive command-line experience.
+* **🌌 Multiple Fractals**: Supports both the classic Mandelbrot set and infinite variations of the Julia set.
+* **🎨 Smooth Coloring**: Uses continuous potential mathematical formulas to eliminate color banding and render smooth, cosmos-like gradients.
 
 ---
 
@@ -46,9 +48,7 @@ Try these coordinates to find the most beautiful spots in the fractal (remember 
 
 | Location | Command |
 | --- | --- |
-| **Seahorse Valley** | `cargo run --release -- -x=-0.768 -y 0.145 -z 500 -i 500` |
-| **Triple Satellite** | `cargo run --release -- -x=-0.160 -y 1.033 -z 2000 -i 1000` |
-| **The Great Heart** | `cargo run --release -- -x=-0.75 -y 0 -z 1 -i 255` |
+| **Galactic Snowflake (Julia)** | `cargo run --release -- -t julia --julia-x 0.0 --julia-y 0.8 -z 1.2` |
 
 ---
 
@@ -73,7 +73,7 @@ Try these coordinates to find the most beautiful spots in the fractal (remember 
 
 ## 🧠 How it Works
 
-The program iterates the function $z_{n+1} = z_n^2 + c$ for every pixel. If the sequence stays bounded, the point belongs to the set.
+The program iterates the function $z_{n+1} = z_n^2 + c$ for every pixel (in mandelbrot case). If the sequence stays bounded, the point belongs to the set.
 
 1. **Coordinate Mapping:** Converts screen pixels $(u, v)$ to the complex plane $(x, y)$ using the specified zoom and center.
 2. **Parallel Computation:** Using `Rayon`, the image buffer is split into chunks, allowing each CPU core to work on a slice of the image simultaneously.
