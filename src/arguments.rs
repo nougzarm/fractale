@@ -1,4 +1,11 @@
 use clap::Parser;
+use clap::ValueEnum;
+
+#[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum, Debug)]
+pub enum FractalType {
+    Mandelbrot,
+    Julia,
+}
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -27,7 +34,10 @@ pub struct Args {
     #[arg(short = 'i', long, default_value_t = 255)]
     pub max_iter: usize,
 
+    #[arg(short = 't', long, value_enum, default_value_t = FractalType::Mandelbrot)]
+    pub fractal_type: FractalType,
+
     /// Name of output file
-    #[arg(short = 'o', long, default_value_t = String::from("mandelbrot.png"))]
+    #[arg(short = 'o', long, default_value_t = String::from("output.png"))]
     pub output: String,
 }

@@ -35,7 +35,7 @@ pub fn indice_determine<F: Fractal>(f: &F, c: Complex<f64>, max_iter: usize) -> 
 
 pub fn coloring(iter_index: f64, max_iter: f64) -> [u8; 3] {
     if iter_index >= max_iter {
-        return [0, 0, 0];
+        [0, 0, 0]
     } else {
         use std::f64::consts::PI;
 

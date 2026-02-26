@@ -1,12 +1,13 @@
-use fractale::arguments::Args;
+use fractale::arguments::{Args, FractalType};
 use fractale::multi_core::multi_core_generate;
 use fractale::single_core::single_core_generate;
+use fractale::traits::Mandelbrot;
 use std::time::Instant;
 
 fn run_single_bench(args: &Args) -> u128 {
     let start = Instant::now();
 
-    let _img = single_core_generate(args);
+    let _img = single_core_generate::<Mandelbrot>(Mandelbrot::default(), args);
 
     start.elapsed().as_millis()
 }
@@ -14,7 +15,7 @@ fn run_single_bench(args: &Args) -> u128 {
 fn run_multi_bench(args: &Args) -> u128 {
     let start = Instant::now();
 
-    let _img = multi_core_generate(args);
+    let _img = multi_core_generate::<Mandelbrot>(Mandelbrot::default(), args);
 
     start.elapsed().as_millis()
 }
@@ -28,6 +29,7 @@ fn compare_performances() {
         center_y: 0.0,
         zoom: 1.0,
         max_iter: 2000,
+        fractal_type: FractalType::Mandelbrot,
         output: String::from("test_output"),
     };
 
