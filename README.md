@@ -78,10 +78,4 @@ The program iterates the function $z_{n+1} = z_n^2 + c$ for every pixel. If the 
 
 ---
 
-## 📈 Roadmap
-
-* [ ] Add **Smooth Coloring** (renormalization) to remove color banding.
-
----
-
 Generated with ❤️ using Rust.
