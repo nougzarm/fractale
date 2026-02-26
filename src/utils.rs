@@ -37,11 +37,15 @@ pub fn coloring(iter_index: f64, max_iter: f64) -> [u8; 3] {
     if iter_index >= max_iter {
         return [0, 0, 0];
     } else {
-        let t = iter_index.sqrt() * 0.5;
-        let r = (t.sin() * 127.0 + 128.0) as u8;
-        let g = ((t + 2.0).sin() * 127.0 + 128.0) as u8;
-        let b = ((t + 4.0).sin() * 127.0 + 128.0) as u8;
+        use std::f64::consts::PI;
 
-        return [r, g, b];
+        let t = iter_index * 0.05;
+
+        // Formula : a + b * cos(2π * (c * t + d))
+        let r = (0.5 + 0.5 * (2.0 * PI * (1.0 * t + 0.00)).cos()) * 255.0;
+        let g = (0.5 + 0.5 * (2.0 * PI * (1.0 * t + 0.15)).cos()) * 255.0;
+        let b = (0.5 + 0.5 * (2.0 * PI * (1.0 * t + 0.20)).cos()) * 255.0;
+
+        [r as u8, g as u8, b as u8]
     }
 }
