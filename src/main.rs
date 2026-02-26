@@ -12,13 +12,16 @@ fn mandelbrot(c: Complex<f64>, max_iter: usize) -> usize {
     max_iter
 }
 
-fn convert(width: u32, height: u32, (x_p, y_p): (u32, u32)) -> Result<Complex<f64>, ()> {
-    if x_p > width || y_p > height {
+fn convert(args: &Args, (x_p, y_p): (u32, u32)) -> Result<Complex<f64>, ()> {
+    if x_p > args.width || y_p > args.height {
         return Err(());
     }
 
-    let x = 3.0 * (x_p as f64) / (width as f64) - 2.0;
-    let y = 2.4 * (y_p as f64) / (height as f64) - 1.2;
+    let x_range = 3.0 / args.zoom;
+    let y_range = 2.4 / args.zoom;
+
+    let x = args.center_x + (x_p as f64 / args.width as f64 - 0.5) * x_range;
+    let y = args.center_y + (y_p as f64 / args.height as f64 - 0.5) * y_range;
 
     Ok(Complex::<f64>::new(x, y))
 }
@@ -45,7 +48,7 @@ struct Args {
     center_y: f64,
 
     /// Zoom level
-    #[arg(short, long, default_value_t = 1.0)]
+    #[arg(short = 'z', long, default_value_t = 1.0)]
     zoom: f64,
 
     /// Maximum number of iterations (precision)
@@ -63,7 +66,7 @@ fn main() {
     let mut img: ImageBuffer<Rgb<u8>, Vec<u8>> = ImageBuffer::new(args.width, args.height);
 
     for (x_p, y_p, pixel) in img.enumerate_pixels_mut() {
-        let c = convert(args.width, args.height, (x_p, y_p)).unwrap();
+        let c = convert(&args, (x_p, y_p)).unwrap();
         let i = mandelbrot(c, args.max_iter);
 
         if i == args.max_iter {
@@ -77,5 +80,5 @@ fn main() {
         }
     }
 
-    img.save("mandelbrot.png").expect("Failure");
+    img.save(&args.output).expect("Failure");
 }
