@@ -7,6 +7,7 @@ use crate::utils::{coloring, convert, indice_determine};
 
 pub fn multi_core_generate(args: &Args) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
     let mut raw_pixels = vec![0u8; (args.width * args.height * 3) as usize];
+    let mandelbrot = Mandelbrot;
 
     raw_pixels
         .par_chunks_exact_mut(3)
@@ -16,7 +17,7 @@ pub fn multi_core_generate(args: &Args) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
             let y_p = (i as u32) / args.width;
 
             let c = convert(args, (x_p, y_p)).unwrap();
-            let iterations = indice_determine::<Mandelbrot>(c, args.max_iter);
+            let iterations = indice_determine::<Mandelbrot>(&mandelbrot, c, args.max_iter);
 
             [pixel_slice[0], pixel_slice[1], pixel_slice[2]] =
                 coloring(iterations, args.max_iter as f64);

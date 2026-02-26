@@ -16,8 +16,8 @@ pub fn convert(args: &Args, (x_p, y_p): (u32, u32)) -> Result<Complex<f64>, ()> 
     Ok(Complex::<f64>::new(x, y))
 }
 
-pub fn indice_determine<F: Iteration>(c: Complex<f64>, max_iter: usize) -> f64 {
-    let mut z = F::first();
+pub fn indice_determine<F: Iteration>(f: &F, c: Complex<f64>, max_iter: usize) -> f64 {
+    let mut z = f.first(c);
 
     for i in 0..max_iter {
         if z.norm_sqr() > 256.0 {
@@ -27,7 +27,7 @@ pub fn indice_determine<F: Iteration>(c: Complex<f64>, max_iter: usize) -> f64 {
 
             return i as f64 + 1.0 - nu;
         }
-        z = F::iter(z, c);
+        z = f.iter(z, c);
     }
 
     max_iter as f64
