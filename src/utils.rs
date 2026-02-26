@@ -13,7 +13,7 @@ pub fn mandelbrot(c: Complex<f64>, max_iter: usize) -> usize {
 }
 
 pub fn convert(args: &Args, (x_p, y_p): (u32, u32)) -> Result<Complex<f64>, ()> {
-    if x_p > args.width || y_p > args.height {
+    if x_p >= args.width || y_p >= args.height {
         return Err(());
     }
 
