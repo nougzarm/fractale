@@ -1,5 +1,5 @@
 
-# 🦀 Fractal-rs: High-Performance Mandelbrot Generator
+# 🦀 fractale: High-Performance Mandelbrot Generator
 
 A fast, multi-threaded Mandelbrot set generator written in **Rust**. This CLI tool leverages the power of parallel computing to render beautiful fractals at high resolutions and deep zoom levels.
 
