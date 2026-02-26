@@ -1,6 +1,6 @@
 use num_complex::Complex;
 
-pub trait Iteration {
+pub trait Fractal {
     fn first(&self, c: Complex<f64>) -> Complex<f64>;
 
     fn iter(&self, z: Complex<f64>, c: Complex<f64>) -> Complex<f64>;
@@ -8,7 +8,7 @@ pub trait Iteration {
 
 pub struct Mandelbrot;
 
-impl Iteration for Mandelbrot {
+impl Fractal for Mandelbrot {
     fn first(&self, _c: Complex<f64>) -> Complex<f64> {
         Complex::new(0.0, 0.0)
     }
@@ -20,7 +20,7 @@ impl Iteration for Mandelbrot {
 
 pub struct Julia(Complex<f64>);
 
-impl Iteration for Julia {
+impl Fractal for Julia {
     fn first(&self, c: Complex<f64>) -> Complex<f64> {
         c
     }

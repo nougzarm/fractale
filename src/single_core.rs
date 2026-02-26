@@ -1,7 +1,7 @@
 use image::{ImageBuffer, Rgb};
 
 use crate::arguments::Args;
-use crate::mandelbrot::Mandelbrot;
+use crate::traits::Mandelbrot;
 use crate::utils::{coloring, convert, indice_determine};
 
 pub fn single_core_generate(args: &Args) -> ImageBuffer<Rgb<u8>, Vec<u8>> {

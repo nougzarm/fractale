@@ -1,5 +1,5 @@
 use crate::arguments::Args;
-use crate::mandelbrot::Iteration;
+use crate::traits::Fractal;
 use num_complex::Complex;
 
 pub fn convert(args: &Args, (x_p, y_p): (u32, u32)) -> Result<Complex<f64>, ()> {
@@ -16,7 +16,7 @@ pub fn convert(args: &Args, (x_p, y_p): (u32, u32)) -> Result<Complex<f64>, ()> 
     Ok(Complex::<f64>::new(x, y))
 }
 
-pub fn indice_determine<F: Iteration>(f: &F, c: Complex<f64>, max_iter: usize) -> f64 {
+pub fn indice_determine<F: Fractal>(f: &F, c: Complex<f64>, max_iter: usize) -> f64 {
     let mut z = f.first(c);
 
     for i in 0..max_iter {
