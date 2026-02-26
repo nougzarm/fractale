@@ -2,7 +2,8 @@ use image::{ImageBuffer, Rgb};
 use rayon::prelude::*;
 
 use crate::arguments::Args;
-use crate::utils::{convert, mandelbrot};
+use crate::mandelbrot::Mandelbrot;
+use crate::utils::{convert, indice_determine};
 
 pub fn multi_core_generate(args: &Args) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
     let mut raw_pixels = vec![0u8; (args.width * args.height * 3) as usize];
@@ -15,7 +16,7 @@ pub fn multi_core_generate(args: &Args) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
             let y_p = (i as u32) / args.width;
 
             let c = convert(args, (x_p, y_p)).unwrap();
-            let iterations = mandelbrot(c, args.max_iter);
+            let iterations = indice_determine::<Mandelbrot>(c, args.max_iter);
 
             if iterations == args.max_iter {
                 pixel_slice[0] = 0;

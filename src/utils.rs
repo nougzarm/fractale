@@ -1,13 +1,14 @@
 use crate::arguments::Args;
+use crate::mandelbrot::Iteration;
 use num_complex::Complex;
 
-pub fn mandelbrot(c: Complex<f64>, max_iter: usize) -> usize {
-    let mut z = Complex::<f64>::new(0.0, 0.0);
+pub fn indice_determine<F: Iteration>(c: Complex<f64>, max_iter: usize) -> usize {
+    let mut z = F::first();
     for i in 0..max_iter {
         if z.norm_sqr() > 4.0 {
             return i;
         }
-        z = z * z + c;
+        z = F::iter(z, c);
     }
     max_iter
 }
