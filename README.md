@@ -1,5 +1,5 @@
 
-# 🦀 fractale: Mandelbrot Generator
+# 🦀 fractale: High-Performance Fractal Generator
 
 A fast, multi-threaded Mandelbrot set generator written in **Rust**. This CLI tool leverages the power of parallel computing to render beautiful fractals at high resolutions and deep zoom levels.
 
@@ -49,6 +49,7 @@ Try these coordinates to find the most beautiful spots in the fractal (remember 
 | Location | Command |
 | --- | --- |
 | **Galactic Snowflake (Julia)** | `cargo run --release -- -t julia --julia-x 0.0 --julia-y 0.8 -z 1.2` |
+| **Golden Dragon (Julia)** | `cargo run --release -- -t julia --julia-x 0.285 --julia-y 0.013 -z 1.2` |
 
 ---
 
