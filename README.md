@@ -66,7 +66,7 @@ Try these coordinates to find the most beautiful spots in the fractal (remember 
 | `-t` | `--fractal-type` | Type of fractal (mandelbrot or julia) | mandelbrot |
 | | `--julia-x` | Real constant for Julia set | -0.4 |
 | | `--julia-y` | Imaginary constant for Julia set | 0.6 |
-| `-o` | `--output` | Output filename (.png) | mandelbrot.png |
+| `-o` | `--output` | Output filename (.png) | output.png |
 
 > **Note:** If you encounter issues with negative values (e.g., `-x -0.75`), use the `=` syntax: `--center-x=-0.75`.
 
